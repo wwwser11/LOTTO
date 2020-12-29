@@ -5,49 +5,31 @@ from bag import Bag
 
 def game():
 
-    user = Card((input('            ПРИВЕТСВУЮ В ИГРЕ ЮЗЕР,\n'
+    user = Card((input('            ПРИВЕТСВУЮ В ИГРЕ ЮЗЕР\n'
                        'ДЛЯ ТОГО ЧОБЫ НАЧАТЬ ИГРАТЬ В ЛОТТО ВВЕДИ СВОЕ ИМЯ: ')))
-    comp = Card('Я_Компуктер')
-    # time.sleep(1)
+    comp = Card('Компуктер')
+    time.sleep(1)
     user.show_card()
-    print(" Взгляни на свою карточку и возрадуйся :)")
+    print("Это твоя карточка на эту игру, можешь ее не запоминать, она будет демонстрироваться каждый ход")
     time.sleep(6)
     print('\nКраткие правила:\nКомпьютер достает первый бочёнок с номером!\n'
           'Eсли на твоей карточке есть клетка с номером выпавшего бочёнка,\n'
           'то ты должен нажать "Y", если нет, в таком случае нажимай "N"')
     time.sleep(9)
-    # toss2 = int(random.randint(0,1))
-    # toss = input('\nДля начала давай проведём жеребьёвку, кто ходит первый'
-    #       '\nВыбери цифру  1 или 0 и введи её: ')
-    # time.sleep(1)
-    # if int(toss) == int(toss2):
-    #     print('\nПоздравляю, удача на твоей стороне, ты ходишь первым\n ГОТОВЬСЯ')
-    #     toss = 1
-    #     # если она равна единице, то первым ходит юзер, если нет соотвественно комп
-    # else:
-    #     print('\nИзвини, но тебе не повезло, ты ходишь вторым.\n ГОТОВЬСЯ')
-    #     toss = 2
     print('ГОТОВЬСЯ')
     time.sleep(1)
-    print('     1')
-    time.sleep(2)
-    print('     2')
-    time.sleep(2)
-    print('     3')
-
-    print('\nИГРА НАЧАЛАСЬ\n\n')
+    print('   1')
+    time.sleep(1)
+    print('   2')
+    time.sleep(1)
+    print('   3')
+    print('\nИГРА НАЧАЛАСЬ\n')
     bag = Bag()
     for i in range(1, 91):
         if user.find_num == True and comp.find_num == True:
-            # print(f'Вытаскиваем бочёнок номер {i}')
-            #time.sleep(1)
-            # print(f'{i}-ый бочёнок имеет номер :')
-            # x = bag.get_keg
-            # print(x)
-            # # bag.lets_see_bag
             toss = 1
             while toss == 1:
-                time.sleep(2)
+                time.sleep(1)
                 print('------------------------------------------------------------------------------------')
                 print('Трясем мешок')
                 time.sleep(3)
@@ -56,10 +38,11 @@ def game():
                 time.sleep(3)
                 comp.show_card()
                 user.show_card()
+                time.sleep(3)
                 print('Компуктер, есть ли у тебя такая цифра или нет?(Y or N)')
                 time.sleep(3)
-                comp_chance = random.randint(0, 101)
-                if comp_chance < 95:
+                comp_chance = random.randint(0, 1001)
+                if comp_chance < 999: #даем возможность компьютеру ошибиться
                     if str(x) in comp._return_matrx():
                         comp_input = 'Y'
                         print(comp_input)
@@ -86,12 +69,12 @@ def game():
                     toss = 2
                 coun = 1 # для того чтобы если пользователь ошибся, алгорим ввода запустился заново
                 while coun == 1:
-                    user_input = input('Есть ли у тебя такая цифра??(Y or N)')
+                    user_input = input('\nЕсть ли у тебя такая цифра??(Y or N)' )
                     if user_input == 'y' or user_input == 'Y':
                         user.if_tap_y(x)
                         if user.find_num == True:
                             time.sleep(3)
-                            print('Хорошо!')
+                            # print('Хорошо!')
                             toss = 2
                             coun = 2
                         else:
@@ -103,9 +86,18 @@ def game():
                         coun =2
                     else:
                         print('Вероятно вы ошиблись! Вы должны ответить да(Y), либо нет(N)')
-
+                print(f'В мешке осталось {bag.lets_see_bag} боченков\n')
+                time.sleep(2)
                 print('------------------------------------------------------------------------------------')
-
+        elif user.find_num == False:
+            print(f'{user} win')
+            raise SystemExit
+        elif user.find_num == False and comp.find_num == False:
+            print('ничья')
+            raise SystemExit
+        else:
+            print('compucter win')
+            raise SystemExit
 
 
 game()
