@@ -46,9 +46,9 @@ def game():
             # print(x)
             # # bag.lets_see_bag
             toss = 1
-            if toss == 1:
+            while toss == 1:
                 time.sleep(2)
-                print('----------------------------------------------------')
+                print('------------------------------------------------------------------------------------')
                 print('Трясем мешок')
                 time.sleep(3)
                 x = bag.get_keg
@@ -84,22 +84,27 @@ def game():
                 elif comp_input == 'N':
                     comp.if_copm_tap_n(x)
                     toss = 2
-                user_input = input('Есть ли у тебя такая цифра??(Y or N)')
-                if user_input == 'y' or user_input == 'Y':
-                    user.if_copm_tap_y(x)
-                    if user.find_num == True:
-                        time.sleep(3)
-                        print('Хорошо!')
+                coun = 1 # для того чтобы если пользователь ошибся, алгорим ввода запустился заново
+                while coun == 1:
+                    user_input = input('Есть ли у тебя такая цифра??(Y or N)')
+                    if user_input == 'y' or user_input == 'Y':
+                        user.if_tap_y(x)
+                        if user.find_num == True:
+                            time.sleep(3)
+                            print('Хорошо!')
+                            toss = 2
+                            coun = 2
+                        else:
+                            print('у тебя нет чисел в карточке, но игра идет дальше, видимо где-то произошел сбой')
+                            raise SystemExit
+                    elif user_input == 'n' or user_input == 'N':
+                        user.if_tap_n(x)
                         toss = 2
+                        coun =2
                     else:
-                        print('у тебя нет чисел в карточке, но игра идет дальше, видимо где-то произошел сбой')
-                        raise SystemExit
-                elif user_input == 'n' or user_input == 'N':
-                    user.if_tap_n(x)
-                    toss = 2
-                else:
-                    print('Вероятно вы ошиблись! Вы должны ответить да(Y), либо нет(N)')
-                print('----------------------------------------------------')
+                        print('Вероятно вы ошиблись! Вы должны ответить да(Y), либо нет(N)')
+
+                print('------------------------------------------------------------------------------------')
 
 
 
