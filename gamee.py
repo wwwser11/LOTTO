@@ -12,8 +12,8 @@ def game():
     user.show_card()
     print("Это твоя карточка на эту игру, можешь ее не запоминать, она будет демонстрироваться каждый ход")
     time.sleep(6)
-    print('\nКраткие правила:\nКомпьютер достает первый бочёнок с номером!\n'
-          'Eсли на твоей карточке есть клетка с номером выпавшего бочёнка,\n'
+    print('\nКраткие правила:\nКомпьютер достает первый бочонок с номером!\n'
+          'Eсли на твоей карточке есть клетка с номером выпавшего бочонка,\n'
           'то ты должен нажать "Y", если нет, в таком случае нажимай "N"')
     time.sleep(9)
     print('ГОТОВЬСЯ')
@@ -32,9 +32,9 @@ def game():
                 time.sleep(1)
                 print('------------------------------------------------------------------------------------')
                 print('Трясем мешок')
-                time.sleep(3)
+                time.sleep(2)
                 x = bag.get_keg
-                print(f'Вытаскиваем бочёнок номер {x}\n')
+                print(f'Вытаскиваем бочонок номер {x}\n')
                 time.sleep(3)
                 comp.show_card()
                 user.show_card()
@@ -61,15 +61,12 @@ def game():
                     if comp.find_num == True:
                         time.sleep(2)
                         toss = 2
-                    else:
-                        print('у compuctera нет чисел в карточке, но игра идет дальше, видимо где-то произошел сбой')
-                        raise SystemExit
                 elif comp_input == 'N':
                     comp.if_copm_tap_n(x)
                     toss = 2
                 coun = 1 # для того чтобы если пользователь ошибся, алгорим ввода запустился заново
                 while coun == 1:
-                    user_input = input('\nЕсть ли у тебя такая цифра??(Y or N)' )
+                    user_input = input(f'\n{user.name}, есть ли у тебя такая цифра??(Y or N)' )
                     if user_input == 'y' or user_input == 'Y':
                         user.if_tap_y(x)
                         if user.find_num == True:
@@ -77,16 +74,13 @@ def game():
                             # print('Хорошо!')
                             toss = 2
                             coun = 2
-                        else:
-                            print('у тебя нет чисел в карточке, но игра идет дальше, видимо где-то произошел сбой')
-                            raise SystemExit
                     elif user_input == 'n' or user_input == 'N':
                         user.if_tap_n(x)
                         toss = 2
                         coun =2
                     else:
                         print('Вероятно вы ошиблись! Вы должны ответить да(Y), либо нет(N)')
-                print(f'В мешке осталось {bag.lets_see_bag} боченков\n')
+                print(f'количество оставшихся бочонков: {bag.lets_see_bag} \n')
                 time.sleep(2)
                 print('------------------------------------------------------------------------------------')
         elif user.find_num == False:
