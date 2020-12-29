@@ -6,28 +6,6 @@ class Card:
         self.__matrix = []
         self.c = False
 
-#создаем список номеров для карточки
-    # def __make_card(self):
-    #     if not self.c:
-    #         user_card = []
-    #         for i in range(3):
-    #             matx = []
-    #             for i in range(5):
-    #                 matx.append(str(random.randint(1, 90)))
-    #                 matx1 = set(matx)
-    #             while len(matx1) < 5:
-    #                 matx1.add(str(random.randint(1, 90)))
-    #                 matx = list(matx1)
-    #             for i in range(4):
-    #                 matx.append(' ')
-    #             random.shuffle(matx)
-    #             for i in range(9):
-    #                 user_card.append(matx[i])
-    #         self.__matrix = user_card
-    #         self.c = True
-    #     else:
-    #         pass
-
     def __make_card(self):
         while not self.c:
             user_card = []
@@ -51,7 +29,7 @@ class Card:
 #показ карточки игрока
     def show_card(self):
         self.__make_card()
-        print(f' Карточка: {self.name}')
+        print(f'Карточка принадлежит {self.name}')
         print('------------------------')
         print(' '.join(self.__matrix[:9]))
         print(' '.join(self.__matrix[9:18]))
@@ -120,7 +98,7 @@ class Card:
 
     def if_tap_n(self, value):
         if str(value) in self.__matrix:
-            print("Ты совершил ошибку, это число у тебя есть!")
+            print("Ты совершил ошибку, это число у тебя есть!\nТы проиграл")
             time.sleep(3)
             print('ПОК')
             raise SystemExit
