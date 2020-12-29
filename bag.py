@@ -18,4 +18,4 @@ class Bag:
 
     @property
     def lets_see_bag(self):
-        print(self.__keg)
+        return len(self.__keg)
