@@ -7,26 +7,46 @@ class Card:
         self.c = False
 
 #создаем список номеров для карточки
+    # def __make_card(self):
+    #     if not self.c:
+    #         user_card = []
+    #         for i in range(3):
+    #             matx = []
+    #             for i in range(5):
+    #                 matx.append(str(random.randint(1, 90)))
+    #                 matx1 = set(matx)
+    #             while len(matx1) < 5:
+    #                 matx1.add(str(random.randint(1, 90)))
+    #                 matx = list(matx1)
+    #             for i in range(4):
+    #                 matx.append(' ')
+    #             random.shuffle(matx)
+    #             for i in range(9):
+    #                 user_card.append(matx[i])
+    #         self.__matrix = user_card
+    #         self.c = True
+    #     else:
+    #         pass
+
     def __make_card(self):
-        if not self.c:
+        while not self.c:
             user_card = []
+            list_of_nums = list(range(1, 90))  # список чисел которым заполняется карточка
+            count = 1
             for i in range(3):
                 matx = []
                 for i in range(5):
-                    matx.append(str(random.randint(1, 90)))
-                    matx1 = set(matx)
-                while len(matx1) < 5:
-                    matx1.add(str(random.randint(1, 90)))
-                    matx = list(matx1)
+                    counter = random.randint(0, len(list_of_nums) - 1)
+                    num = list_of_nums[counter]
+                    matx.append(num)
+                    list_of_nums.remove(num)
                 for i in range(4):
                     matx.append(' ')
                 random.shuffle(matx)
                 for i in range(9):
-                    user_card.append(matx[i])
+                    user_card.append(str(matx[i]))
             self.__matrix = user_card
             self.c = True
-        else:
-            pass
 
 #показ карточки игрока
     def show_card(self):
@@ -70,7 +90,7 @@ class Card:
 
             return True
         else:
-            print("Ты совершил ошибку, такого числа у тебя на карточке нет!")
+            print("Ты совершил ошибку, такого числа у тебя на карточке нет!\nТы проиграл")
             time.sleep(3)
             print('ПОК')
             raise SystemExit
