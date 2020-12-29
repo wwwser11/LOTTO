@@ -93,7 +93,7 @@ class Card:
             print('ПОК')
             raise SystemExit
         else:
-            print("Верно! Идем дальше")
+            print("Верно! Идем дальше!")
             return True
 
     def if_tap_n(self, value):
@@ -103,7 +103,7 @@ class Card:
             print('ПОК')
             raise SystemExit
         else:
-            print("Верно! Идем дальше\n")
+            print("Верно! Идем дальше!\n")
             return True
 
 # b=Card('bob')
